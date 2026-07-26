@@ -23,7 +23,7 @@ Built for AI agents, security researchers, and audit tools that need structured 
 ## Install
 
 ```bash
-npx @holistis/3ilm-mcp
+npx 3ilm-mcp
 ```
 
 ## Add to Claude / Cursor
