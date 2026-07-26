@@ -1,6 +1,6 @@
 {
   "name": "3ilm-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MCP server exposing 3ilm — a curated knowledge base of 1,032 smart contract vulnerability findings from 10 fully-reconciled Sherlock audit contests. Search patterns by keyword, get acceptance rates, and learn from real accepted/rejected examples.",
   "keywords": [
     "mcp",
@@ -47,5 +47,6 @@
     "type": "git",
     "url": "git+https://github.com/holistis/3ilm-mcp.git"
   },
-  "homepage": "https://github.com/holistis/3ilm-mcp#readme"
+  "homepage": "https://github.com/holistis/3ilm-mcp#readme",
+  "mcpName": "io.github.holistis/3ilm-mcp"
 }

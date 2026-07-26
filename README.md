@@ -35,7 +35,7 @@ npx 3ilm-mcp
   "mcpServers": {
     "3ilm": {
       "command": "npx",
-      "args": ["-y", "@holistis/3ilm-mcp"]
+      "args": ["-y", "3ilm-mcp"]
     }
   }
 }
@@ -48,7 +48,7 @@ npx 3ilm-mcp
   "mcpServers": {
     "3ilm": {
       "command": "npx",
-      "args": ["-y", "@holistis/3ilm-mcp"]
+      "args": ["-y", "3ilm-mcp"]
     }
   }
 }
@@ -65,9 +65,22 @@ Ask your AI assistant:
 
 ## Data source
 
-All data from the verified `sherlock/_index.json` in the [3ilm knowledge base](https://github.com/holistis/3ilm-mcp). Findings are reconciled against actual contest outcomes — no scraping, no estimates.
+Same underlying dataset as [`vulnerability-acceptance-rates.json`](https://github.com/holistis/bug-bounty-intelligence-mcp/blob/main/vulnerability-acceptance-rates.json) — CC0, downloadable directly, no server required. That file is the canonical, publicly reproducible source; the numbers here are copied from it, not independently computed. Findings are reconciled against actual contest outcomes — no scraping, no estimates. See [METHODOLOGY.md](https://github.com/holistis/bug-bounty-intelligence-mcp/blob/main/METHODOLOGY.md) for the exact reconciliation method.
 
 The 12 patterns: `fee-miscalculation`, `dos-griefing`, `reentrancy`, `trusted-actor`, `overflow`, `staleness`, `rounding`, `access-control`, `oracle-manipulation`, `mev-slippage`, `liquidation`, `flash-loan`.
+
+## How this relates to bug-bounty-intelligence-mcp
+
+Both MCP servers read the same verified data — they differ in scope:
+
+| | 3ilm-mcp (this repo) | [bug-bounty-intelligence-mcp](https://github.com/holistis/bug-bounty-intelligence-mcp) |
+|---|---|---|
+| Pattern search / acceptance rates | Free | Free (`list_vulnerability_patterns`) |
+| Full-repo contract scan | Not offered | $5 USDC via x402 (`scan_contract`) |
+| Cost | Always free, no paid tier | Free tools + one paid tool |
+| Best for | Just want the pattern data via MCP, nothing else | Also want an actual scan of your own contracts |
+
+If you only need to query acceptance rates, either server works identically for that. Use 3ilm-mcp if you want the smaller, free-only package; use bug-bounty-intelligence-mcp if you also want the paid full-repo scan tool.
 
 ## Related
 
