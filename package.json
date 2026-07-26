@@ -1,0 +1,51 @@
+{
+  "name": "@holistis/3ilm-mcp",
+  "version": "1.0.0",
+  "description": "MCP server exposing 3ilm — a curated knowledge base of 1,032 smart contract vulnerability findings from 10 fully-reconciled Sherlock audit contests. Search patterns by keyword, get acceptance rates, and learn from real accepted/rejected examples.",
+  "keywords": [
+    "mcp",
+    "smart-contract",
+    "security",
+    "vulnerabilities",
+    "solidity",
+    "audit",
+    "sherlock",
+    "defi",
+    "bug-bounty"
+  ],
+  "author": "holistis",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "3ilm-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "prepare": "tsc",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "node --loader ts-node/esm src/index.ts",
+    "check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5",
+    "@types/node": "^20.12.7"
+  },
+  "files": [
+    "dist",
+    "data",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/holistis/3ilm-mcp"
+  },
+  "homepage": "https://github.com/holistis/3ilm-mcp#readme"
+}

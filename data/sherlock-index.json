@@ -1,0 +1,608 @@
+{
+  "last_updated": "2026-07-21T19:51:20.564Z",
+  "contests_crawled": 10,
+  "contests_available_uncrawled_reason": "95 van 105 contests uitgesloten: geen NNN-severity mapstructuur of reconciliatie-mismatch (zie methodology-veld en excluded_contests)",
+  "total_findings": 1032,
+  "total_accepted": 461,
+  "methodology": "Sherlock judging-repo NNN-severity mapstructuur (ground truth), volledig gereconcilieerd per contest (accepted+invalid moet exact totaal zijn). Contests zonder deze mapstructuur of met reconciliatie-mismatch zijn uitgesloten, niet gegokt.",
+  "pattern_library": {
+    "fee-miscalculation": {
+      "accepted": 55,
+      "rejected": 51,
+      "duplicated": 3,
+      "total": 109,
+      "examples_accepted": [
+        "WangAudit - [H] `RubiconFeeController::getFeeOutputs` incorrectly creates feeOut",
+        "turvec - The feeController differs from it's specification as setting 'applyFee'",
+        "hals - `IG` contract can be DoS'd from minting or burning options"
+      ],
+      "examples_rejected": [
+        "Dobry - `getFeeOutputs` does not work as intended due to a wrong comparison",
+        "soliditywala - Fees not set in initialize()",
+        "DJINN - Missing address(0) checks for `_owner` in  `RubiconFeeController.initial"
+      ],
+      "acceptance_rate": "0.50"
+    },
+    "dos-griefing": {
+      "accepted": 64,
+      "rejected": 90,
+      "duplicated": 2,
+      "total": 156,
+      "examples_accepted": [
+        "ni8mare - `execute` transactions can be reverted by a malicious user.",
+        "LTDingZhen - Users can grief fillers by set malicious `ValidationContract`.",
+        "mstpr-brainbot - Pairs with \"MAX_FEE\" can revert due to rounding inconsistencies"
+      ],
+      "examples_rejected": [
+        "LouisTsai - Vulnerabilities in gas consumption and native token handling in inte",
+        "Debych - Griefer maker can cause DOS",
+        "hunter_w3b - `BaseGladiusReactor::executeBatch` vulnerable to DOS attack"
+      ],
+      "acceptance_rate": "0.41"
+    },
+    "reentrancy": {
+      "accepted": 40,
+      "rejected": 11,
+      "duplicated": 0,
+      "total": 51,
+      "examples_accepted": [
+        "m4k2 - Reentrancy in `GoatPairV1::burn` if token is a non-standard ERC20",
+        "Tonchi - Reentrancy in burn function, as it doesn't update the state of liquidit",
+        "C1rdan - hacker can steal fee from LPs"
+      ],
+      "examples_rejected": [
+        "0xRstStn - Upgradeable contracts should implement ERC-7201 name spacing to reduc",
+        "calpaliu - Avoiding the Use of address(this).balance in BaseGladiusReactor Contr",
+        "cheatcode - Unsafe use of low-level calls in AmirX::defiSwap function"
+      ],
+      "acceptance_rate": "0.78"
+    },
+    "trusted-actor": {
+      "accepted": 159,
+      "rejected": 148,
+      "duplicated": 4,
+      "total": 311,
+      "examples_accepted": [
+        "LTDingZhen - Users can grief fillers by set malicious `ValidationContract`.",
+        "mstpr-brainbot - Pairs with \"MAX_FEE\" can revert due to rounding inconsistencies",
+        "HSP - Attacker can submit malicious order and user may lose funds interacting wi"
+      ],
+      "examples_rejected": [
+        "soliditywala - Fees not set in initialize()",
+        "taner2344 - setGladiusReactor function has no zero address check.",
+        "taner2344 - setFeeRecipient checks no \"zero address\" parameter"
+      ],
+      "acceptance_rate": "0.51"
+    },
+    "overflow": {
+      "accepted": 26,
+      "rejected": 19,
+      "duplicated": 0,
+      "total": 45,
+      "examples_accepted": [
+        "Fassi_Security - When an order is exactly matched, a buyer can end up paying mor",
+        "mstpr-brainbot - Pairs with \"MAX_FEE\" can revert due to rounding inconsistencies",
+        "irresponsible - Partition rounds up which can cause orders to be unfillable beca"
+      ],
+      "examples_rejected": [
+        "crypticdefense - Possible loss of shares",
+        "OCC - Potential underflow vulnerability",
+        "OCC - Overflow Vulnerability"
+      ],
+      "acceptance_rate": "0.58"
+    },
+    "staleness": {
+      "accepted": 86,
+      "rejected": 84,
+      "duplicated": 4,
+      "total": 174,
+      "examples_accepted": [
+        "LTDingZhen - Users can grief fillers by set malicious `ValidationContract`.",
+        "HSP - Attacker can submit malicious order and user may lose funds interacting wi",
+        "pkqs90 - Orders with equal `decayStartTime` and `decayEndTime` benefit the fille"
+      ],
+      "examples_rejected": [
+        "jennifer37 - possible partial execution failure because of permit2 nounce used i",
+        "merlinboii - Draining Remaining Native Tokens with Dust Spending",
+        "bigbick123456789000 - Lack of Protection Against Replay Attacks in PartialFillLi"
+      ],
+      "acceptance_rate": "0.49"
+    },
+    "rounding": {
+      "accepted": 25,
+      "rejected": 38,
+      "duplicated": 0,
+      "total": 63,
+      "examples_accepted": [
+        "mstpr-brainbot - Pairs with \"MAX_FEE\" can revert due to rounding inconsistencies",
+        "KingNFT - Execution of orders would revert unexpectedly while ````baseFee```` or",
+        "blutorque - `PartialFillLib::partition()` unexpectedly reverts with `PartialFill"
+      ],
+      "examples_rejected": [
+        "cheatcode - Rounding Errors in Conversion from Asset Amount to Shares",
+        "cheatcode - Share Price Inflation due to Accumulated Shares",
+        "0xweebad - A user may not receive all his available shares of previous epochs if"
+      ],
+      "acceptance_rate": "0.40"
+    },
+    "access-control": {
+      "accepted": 35,
+      "rejected": 39,
+      "duplicated": 0,
+      "total": 74,
+      "examples_accepted": [
+        "skatas192 - The `owner` address has never been set wich will cause the `auth` mo",
+        "bearonbike - DVP's _mint/_burn function could be DoS by FeeManager.",
+        "KingNFT - Attack on ````FeeManager.trackVaultFee()```` to make the IG contract t"
+      ],
+      "examples_rejected": [
+        "Tychai0s - Uninitialized Implementation Vulnerability in RubiconFeeController.so",
+        "Tychai0s - BaseGladiusReactor can be hijacked",
+        "bigbick123456789000 - Lack of Protection Against Replay Attacks in PartialFillLi"
+      ],
+      "acceptance_rate": "0.47"
+    },
+    "oracle-manipulation": {
+      "accepted": 47,
+      "rejected": 78,
+      "duplicated": 6,
+      "total": 131,
+      "examples_accepted": [
+        "ge6a - DOS of IG mint/burn because of _deltaHedgePosition() revert",
+        "ge6a - Dos through large deposit",
+        "jasonxiale - `Vault._state.liquidity.totalDeposit` can avoid being decreased."
+      ],
+      "examples_rejected": [
+        "0xlucky - Missing checks for whether L2 Sequencer is active",
+        "mgf15 - Chainlink's `latestRoundData` might return stale or incorrect results",
+        "sa9933 - No check for active L2 Sequencer"
+      ],
+      "acceptance_rate": "0.36"
+    },
+    "mev-slippage": {
+      "accepted": 44,
+      "rejected": 44,
+      "duplicated": 1,
+      "total": 89,
+      "examples_accepted": [
+        "ge6a - DOS of IG mint/burn because of _deltaHedgePosition() revert",
+        "ge6a - Dos through large deposit",
+        "ge6a - Permanent Dos through trackVaultFee()"
+      ],
+      "examples_rejected": [
+        "cheatcode - Insufficient Slippage Handling for Swaps",
+        "cheatcode - Insufficient Slippage Handling for Withdrawals",
+        "cheatcode - Share Price Inflation due to Accumulated Shares"
+      ],
+      "acceptance_rate": "0.49"
+    },
+    "liquidation": {
+      "accepted": 4,
+      "rejected": 9,
+      "duplicated": 1,
+      "total": 14,
+      "examples_accepted": [
+        "M3azad - No updation of _state.liquidity.pendingWithdrawals may lead to abnormal",
+        "bughuntoor - Liquidation bonus scales exponentially instead of linearly.",
+        "cawfree - Calls to `addToBlackList(address,address[])` can be frontrun."
+      ],
+      "examples_rejected": [
+        "y0ng0p3 - Not checking for Arbitrum L2 Sequencer",
+        "3docSec - Missing Sequencer uptime check in ChainlinkPriceOracle",
+        "1337 - Insufficient `dailyRateCollateralBalance` Check May Lead to Liquidation F"
+      ],
+      "acceptance_rate": "0.29"
+    },
+    "flash-loan": {
+      "accepted": 6,
+      "rejected": 6,
+      "duplicated": 1,
+      "total": 13,
+      "examples_accepted": [
+        "cawfree - The invariant `maxDeposit` for a `Vault` can be exceeded.",
+        "mgf15 - Use of `slot0` to get `sqrtPriceX96` can lead to price manipulation.",
+        "bughuntoor - Any user can do a AAVE flashloan on behalf of `FlashLoanAggregator`"
+      ],
+      "examples_rejected": [
+        "1337 - Lack of guarantee that the fee of flash loan will be paid by borrower, it",
+        "MrMorningstar - MrMorningstar - Unoptimized `FlashLoanAggregator:: _repayFlashLo",
+        "zraxx - When the amout of token acquired by a flash loan exceeds the expected va"
+      ],
+      "acceptance_rate": "0.46"
+    }
+  },
+  "contests": [
+    "2024-02-rubicon-finance-judging",
+    "2024-02-smilee-finance-judging",
+    "2024-02-telcoin-platform-audit-update-judging",
+    "2024-03-goat-trading-judging",
+    "2024-03-nouns-dao-2-judging",
+    "2024-03-wagmileverage-v2-judging",
+    "2024-03-woofi-swap-judging",
+    "2024-03-zap-protocol-judging",
+    "2024-04-arcadia-pricing-module-judging",
+    "2024-06-allora-judging"
+  ],
+  "excluded_contests": [
+    {
+      "repo": "2024-02-tapioca-judging",
+      "reason": "reconciliatie mislukt: accepted(114)+invalid(23)=137 != totaal(150)"
+    },
+    {
+      "repo": "2024-03-amphor-judging",
+      "reason": "reconciliatie mislukt: accepted(58)+invalid(96)=154 != totaal(155)"
+    },
+    {
+      "repo": "2024-03-arrakis-judging",
+      "reason": "reconciliatie mislukt: accepted(12)+invalid(79)=91 != totaal(99)"
+    },
+    {
+      "repo": "2024-03-axis-finance-judging",
+      "reason": "reconciliatie mislukt: accepted(158)+invalid(42)=200 != totaal(249)"
+    },
+    {
+      "repo": "2024-03-flat-money-fix-review-contest-judging",
+      "reason": "reconciliatie mislukt: accepted(18)+invalid(9)=27 != totaal(29)"
+    },
+    {
+      "repo": "2024-03-vvv-vesting-staking-judging",
+      "reason": "reconciliatie mislukt: accepted(67)+invalid(68)=135 != totaal(183)"
+    },
+    {
+      "repo": "2024-03-zivoe-judging",
+      "reason": "reconciliatie mislukt: accepted(329)+invalid(280)=609 != totaal(500)"
+    },
+    {
+      "repo": "2024-04-alchemix-judging",
+      "reason": "reconciliatie mislukt: accepted(65)+invalid(109)=174 != totaal(178)"
+    },
+    {
+      "repo": "2024-04-interest-rate-model-judging",
+      "reason": "reconciliatie mislukt: accepted(73)+invalid(185)=258 != totaal(263)"
+    },
+    {
+      "repo": "2024-04-teller-finance-judging",
+      "reason": "reconciliatie mislukt: accepted(238)+invalid(44)=282 != totaal(305)"
+    },
+    {
+      "repo": "2024-04-titles-judging",
+      "reason": "reconciliatie mislukt: accepted(198)+invalid(257)=455 != totaal(463)"
+    },
+    {
+      "repo": "2024-04-xkeeper-judging",
+      "reason": "reconciliatie mislukt: accepted(58)+invalid(114)=172 != totaal(185)"
+    },
+    {
+      "repo": "2024-05-aleo-judging",
+      "reason": "reconciliatie mislukt: accepted(21)+invalid(12)=33 != totaal(36)"
+    },
+    {
+      "repo": "2024-05-andromeda-ado-judging",
+      "reason": "reconciliatie mislukt: accepted(27)+invalid(52)=79 != totaal(81)"
+    },
+    {
+      "repo": "2024-05-beefy-cowcentrated-liquidity-manager-judging",
+      "reason": "reconciliatie mislukt: accepted(110)+invalid(24)=134 != totaal(145)"
+    },
+    {
+      "repo": "2024-05-elfi-protocol-judging",
+      "reason": "reconciliatie mislukt: accepted(213)+invalid(56)=269 != totaal(294)"
+    },
+    {
+      "repo": "2024-05-gamma-staking-judging",
+      "reason": "reconciliatie mislukt: accepted(108)+invalid(214)=322 != totaal(346)"
+    },
+    {
+      "repo": "2024-05-kwenta-x-perennial-integration-update-judging",
+      "reason": "reconciliatie mislukt: accepted(4)+invalid(32)=36 != totaal(50)"
+    },
+    {
+      "repo": "2024-05-midas-judging",
+      "reason": "reconciliatie mislukt: accepted(73)+invalid(83)=156 != totaal(196)"
+    },
+    {
+      "repo": "2024-05-napier-update-judging",
+      "reason": "reconciliatie mislukt: accepted(59)+invalid(33)=92 != totaal(96)"
+    },
+    {
+      "repo": "2024-05-pooltogether-judging",
+      "reason": "reconciliatie mislukt: accepted(92)+invalid(28)=120 != totaal(170)"
+    },
+    {
+      "repo": "2024-05-sophon-judging",
+      "reason": "reconciliatie mislukt: accepted(25)+invalid(204)=229 != totaal(236)"
+    },
+    {
+      "repo": "2024-05-tokensoft-distributor-contracts-update-judging",
+      "reason": "reconciliatie mislukt: accepted(24)+invalid(34)=58 != totaal(69)"
+    },
+    {
+      "repo": "2024-06-boost-aa-wallet-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2024-06-leveraged-vaults-judging",
+      "reason": "reconciliatie mislukt: accepted(49)+invalid(78)=127 != totaal(132)"
+    },
+    {
+      "repo": "2024-06-magicsea-judging",
+      "reason": "reconciliatie mislukt: accepted(475)+invalid(218)=693 != totaal(500)"
+    },
+    {
+      "repo": "2024-06-makerdao-endgame-judging",
+      "reason": "reconciliatie mislukt: accepted(10)+invalid(85)=95 != totaal(131)"
+    },
+    {
+      "repo": "2024-06-mellow-judging",
+      "reason": "reconciliatie mislukt: accepted(29)+invalid(135)=164 != totaal(315)"
+    },
+    {
+      "repo": "2024-06-new-scope-judging",
+      "reason": "reconciliatie mislukt: accepted(389)+invalid(65)=454 != totaal(500)"
+    },
+    {
+      "repo": "2024-06-symmetrical-update-2-judging",
+      "reason": "reconciliatie mislukt: accepted(6)+invalid(16)=22 != totaal(25)"
+    },
+    {
+      "repo": "2024-06-union-finance-update-2-judging",
+      "reason": "reconciliatie mislukt: accepted(52)+invalid(83)=135 != totaal(144)"
+    },
+    {
+      "repo": "2024-06-velocimeter-judging",
+      "reason": "reconciliatie mislukt: accepted(307)+invalid(119)=426 != totaal(500)"
+    },
+    {
+      "repo": "2024-07-exactly-stacking-contracts-judging",
+      "reason": "reconciliatie mislukt: accepted(62)+invalid(30)=92 != totaal(119)"
+    },
+    {
+      "repo": "2024-07-kwenta-staking-contracts-judging",
+      "reason": "reconciliatie mislukt: accepted(4)+invalid(166)=170 != totaal(182)"
+    },
+    {
+      "repo": "2024-07-sense-points-marketplace-judging",
+      "reason": "reconciliatie mislukt: accepted(15)+invalid(173)=188 != totaal(212)"
+    },
+    {
+      "repo": "2024-08-cork-protocol-judging",
+      "reason": "reconciliatie mislukt: accepted(163)+invalid(106)=269 != totaal(307)"
+    },
+    {
+      "repo": "2024-08-flayer-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2024-08-midas-minter-redeemer-judging",
+      "reason": "reconciliatie mislukt: accepted(42)+invalid(92)=134 != totaal(166)"
+    },
+    {
+      "repo": "2024-08-morphl2-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2024-08-perennial-v2-update-3-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2024-08-saffron-finance-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2024-08-sentiment-v2-judging",
+      "reason": "reconciliatie mislukt: accepted(368)+invalid(158)=526 != totaal(500)"
+    },
+    {
+      "repo": "2024-08-tokamak-network-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2024-08-velar-artha-judging",
+      "reason": "reconciliatie mislukt: accepted(42)+invalid(97)=139 != totaal(140)"
+    },
+    {
+      "repo": "2024-08-winnables-raffles-judging",
+      "reason": "reconciliatie mislukt: accepted(240)+invalid(375)=615 != totaal(500)"
+    },
+    {
+      "repo": "2024-08-woofi-solana-deployment-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2024-09-orderly-network-solana-contract-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2024-09-predict-fun-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2024-09-symmio-v0-8-4-update-contest-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2024-10-axion-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2024-10-debita-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2024-10-ethos-network-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2024-10-gamma-rewarder-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2024-10-mento-update-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2024-10-morpho-x-index-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2024-11-autonomint-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2024-11-ethos-network-ii-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2024-11-hats-protocol-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2024-11-nounsdao-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2024-11-oku-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2024-11-superfluid-locking-contract-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2024-11-tally-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2024-11-telcoin-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2024-11-teller-finance-update-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2024-11-vvv-exchange-update-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2024-12-babylon-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2024-12-ethos-update-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2024-12-mach-finance-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2024-12-numa-audit-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2024-12-plaza-finance-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2024-12-seda-protocol-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2025-01-aave-v3-3-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2025-01-peapods-finance-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2025-01-perennial-v2-4-update-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2025-02-rova-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2025-02-yieldoor-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2025-03-crestal-network-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2025-03-pinlink-rwa-tokenized-depin-marketplace-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2025-03-symm-io-stacking-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2025-04-aegis-op-grant-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2025-04-burve-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2025-04-pareto-contest-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2025-05-dodo-cross-chain-dex-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2025-05-layeredge-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2025-05-lend-audit-contest-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2025-05-yearn-ybold-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2025-06-notional-exponent-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2025-06-superfluid-locker-system-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2025-06-symbiotic-relay-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2025-07-allbridge-core-yield-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2025-07-cap-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2025-07-debank-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2025-07-malda-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2025-07-mellow-flexible-vaults-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    },
+    {
+      "repo": "2025-07-oku-trade-order-types-judging",
+      "reason": "geen NNN-severity mappen (andere/geen conventie)"
+    }
+  ]
+}
