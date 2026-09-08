@@ -1,6 +1,6 @@
 # 3ilm MCP Server
 
-MCP server exposing **3ilm** — a curated knowledge base of 1,032 smart contract vulnerability findings from 10 fully-reconciled [Sherlock](https://audits.sherlock.xyz) audit contests.
+MCP server exposing **3ilm**, a curated knowledge base of 1,032 smart contract vulnerability findings from 10 fully-reconciled [Sherlock](https://audits.sherlock.xyz) audit contests.
 
 Built for AI agents, security researchers, and audit tools that need structured data on which bug classes get paid, at what rates, and why.
 
@@ -10,7 +10,7 @@ Built for AI agents, security researchers, and audit tools that need structured 
 
 - **1,032 verified findings** from 10 Sherlock contests (fully reconciled against contest outcomes)
 - **12 vulnerability pattern categories** with real acceptance rates, not estimates
-- **Accepted and rejected examples** per category — learn what passes triage
+- **Accepted and rejected examples** per category, to learn what passes triage
 
 ## Tools
 
@@ -28,7 +28,7 @@ npx 3ilm-mcp
 
 ## Add to Claude / Cursor
 
-**Claude Desktop** — add to `claude_desktop_config.json`:
+**Claude Desktop** (add to `claude_desktop_config.json`):
 
 ```json
 {
@@ -41,7 +41,7 @@ npx 3ilm-mcp
 }
 ```
 
-**Cursor** — add to `.cursor/mcp.json`:
+**Cursor** (add to `.cursor/mcp.json`):
 
 ```json
 {
@@ -60,18 +60,18 @@ Ask your AI assistant:
 
 - "What is the acceptance rate for oracle manipulation findings on Sherlock?"
 - "Show me all vulnerability patterns and their payout rates"
-- "Search for reentrancy vulnerabilities — what percentage get accepted?"
+- "Search for reentrancy vulnerabilities: what percentage get accepted?"
 - "What does a accepted flash loan finding look like vs a rejected one?"
 
 ## Data source
 
-Same underlying dataset as [`vulnerability-acceptance-rates.json`](https://github.com/holistis/bug-bounty-intelligence-mcp/blob/main/vulnerability-acceptance-rates.json) — CC0, downloadable directly, no server required. That file is the canonical, publicly reproducible source; the numbers here are copied from it, not independently computed. Findings are reconciled against actual contest outcomes — no scraping, no estimates. See [METHODOLOGY.md](https://github.com/holistis/bug-bounty-intelligence-mcp/blob/main/METHODOLOGY.md) for the exact reconciliation method.
+Same underlying dataset as [`vulnerability-acceptance-rates.json`](https://github.com/holistis/bug-bounty-intelligence-mcp/blob/main/vulnerability-acceptance-rates.json), CC0, downloadable directly, no server required. That file is the canonical, publicly reproducible source; the numbers here are copied from it, not independently computed. Findings are reconciled against actual contest outcomes, no scraping, no estimates. See [METHODOLOGY.md](https://github.com/holistis/bug-bounty-intelligence-mcp/blob/main/METHODOLOGY.md) for the exact reconciliation method.
 
 The 12 patterns: `fee-miscalculation`, `dos-griefing`, `reentrancy`, `trusted-actor`, `overflow`, `staleness`, `rounding`, `access-control`, `oracle-manipulation`, `mev-slippage`, `liquidation`, `flash-loan`.
 
 ## How this relates to bug-bounty-intelligence-mcp
 
-Both MCP servers read the same verified data — they differ in scope:
+Both MCP servers read the same verified data. They differ in scope:
 
 | | 3ilm-mcp (this repo) | [bug-bounty-intelligence-mcp](https://github.com/holistis/bug-bounty-intelligence-mcp) |
 |---|---|---|
