@@ -35,6 +35,17 @@ const server = new McpServer({
 
 server.tool(
   "search_vulnerabilities",
+  "Search the 3ilm knowledge base (1,032 exact-reconciled Sherlock findings, 10 contests) by " +
+    "keyword to find which vulnerability pattern category a bug belongs to, its real acceptance " +
+    "rate, and concrete accepted/rejected write-up examples. Call this when you've spotted a " +
+    'potential bug and want to know if it\'s the kind that typically gets paid — e.g. query ' +
+    '"oracle price manipulation" to learn it\'s accepted only 36% of the time (needs strong ' +
+    'proof of impact), or "reentrancy" to see it\'s accepted 78% of the time (a comparatively ' +
+    "safe category) — before spending time writing a full report. Input: a 3+ character keyword " +
+    "phrase. Output: matched patterns ranked by relevance, each with acceptance %, accepted and " +
+    "rejected examples, and Sherlock-specific notes. Faster and more reliable than re-deriving " +
+    "acceptance rates yourself from raw Sherlock judging-repo GitHub issues — this data is " +
+    "already reconciled against each contest's own accepted/invalid folder structure.",
   {
     query: z
       .string()
@@ -95,6 +106,15 @@ server.tool(
 
 server.tool(
   "get_pattern_details",
+  "Get the complete stats table for exactly ONE named vulnerability pattern (one of 12 " +
+    "categories — call list_patterns first if you don't know the exact kebab-case name, e.g. " +
+    '"access-control" or "oracle-manipulation"). Use this once you already know which pattern ' +
+    "you're dealing with and need the full picture: total/accepted/rejected/duplicated counts, " +
+    "a Sherlock-specific note, and BOTH accepted and rejected example write-ups so you can see " +
+    "exactly where the line falls between a finding that pays out and one that gets thrown out. " +
+    "Input: the exact pattern name. Output: a markdown stats table plus a plain-English read on " +
+    'whether the pattern is "strong" (>=50% acceptance) or "competitive/noisy" (<50%, needs ' +
+    "stronger proof of impact).",
   {
     pattern: z
       .string()
@@ -168,6 +188,14 @@ server.tool(
 
 server.tool(
   "list_patterns",
+  "List all 12 vulnerability pattern categories at once, ranked by finding volume, each with a " +
+    "🟢/🟡/🔴 acceptance-rate indicator (🟢 >=55%, 🟡 45-54%, 🔴 <45%). Call this FIRST when " +
+    "triaging a new codebase or when you don't yet know which specific bug class applies — e.g. " +
+    'to see at a glance that "trusted-actor" issues (311 submitted) are far more common than ' +
+    '"flash-loan" issues (13 submitted), so you can prioritize review time accordingly. No ' +
+    "input required. Output: a full ranked table. Follow up with search_vulnerabilities for a " +
+    "keyword lookup, or get_pattern_details once you've picked one specific pattern from this " +
+    "list.",
   {},
   async () => {
     const all = listAllPatterns();
