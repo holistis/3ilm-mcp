@@ -4,6 +4,12 @@ MCP server exposing **3ilm**, a curated knowledge base of 1,032 smart contract v
 
 Built for AI agents, security researchers, and audit tools that need structured data on which bug classes get paid, at what rates, and why.
 
+## Size, stated honestly
+
+[Solodit](https://www.cyfrin.io/products/solodit) (Cyfrin) advertises 80,000+ aggregated findings. This dataset is smaller on purpose: 1,032 findings, every one reconciled by hand against the contest's own published outcome, not scraped and left as-is. If you want raw volume across every audit firm, use Solodit. If you want a smaller set where every acceptance-rate number has been checked against what the contest actually paid, that's what's here.
+
+**Why this exists next to [bug-bounty-intelligence-mcp](https://github.com/holistis/bug-bounty-intelligence-mcp):** same verified dataset, but this package has no paid tier at all and no dependency on anything beyond pattern lookup. If you only ever want the free `search_vulnerabilities` / `get_pattern_details` / `list_patterns` tools, this is the lighter install. If you also want the paid `scan_contract` full-repo scan, use bug-bounty-intelligence-mcp instead; it includes everything this package does plus that one paid tool.
+
 ## What it is
 
 3ilm (Arabic: علم, "knowledge") contains:
